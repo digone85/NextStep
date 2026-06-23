@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexStep — A tecnologia que seu passo merece</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --preto: #0D0D0D;
+      --grafite: #1A1A1A;
+      --ciano: #00E5FF;
+      --roxo: #5E2EFF;
+      --branco: #FFFFFF;
+      --cinza: #888888;
+      --card-bg: #141414;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--preto);
+      color: var(--branco);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 4rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,229,255,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--ciano);
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--branco);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--ciano); }
+
+    .nav-cta {
+      background: var(--ciano);
+      color: var(--preto) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 700 !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0,229,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(94,46,255,0.1) 0%, transparent 60%);
+    }
+
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--ciano);
+      color: var(--ciano);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-title span { color: var(--ciano); }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--ciano);
+      color: var(--preto);
+      padding: 1rem 2.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0,229,255,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--branco);
+      padding: 1rem 2.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--ciano);
+      color: var(--ciano);
+    }
+
+    .hero-visual {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0,229,255,0.15);
+      padding: 0.6rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-chip-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ciano);
+      box-shadow: 0 0 6px var(--ciano);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 2rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ciano);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── PROBLEMA ── */
+    #problema {
+      background: var(--grafite);
+      border-top: 1px solid rgba(0,229,255,0.08);
+      border-bottom: 1px solid rgba(0,229,255,0.08);
+    }
+
+    #problema .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .problema-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .problema-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .problema-icon {
+      font-size: 1.2rem;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .problema-visual {
+      background: rgba(0,229,255,0.03);
+      border: 1px solid rgba(0,229,255,0.1);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .problema-stat {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--ciano);
+      line-height: 1;
+    }
+
+    .problema-stat-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .problema-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ── SOLUÇÃO / FEATURES ── */
+    #solucao { text-align: center; }
+
+    #solucao .section-subtitle { margin: 0 auto; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,229,255,0.08);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(0,229,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,229,255,0.08);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    “add site”
+
+    .feature-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--branco);
+    }
+
+    .feature-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── PALMILHA ── */
+    #palmilha { background: var(--grafite); }
+
+    #palmilha .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .palmilha-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 1rem;
+      background: rgba(0,229,255,0.04);
+      border: 1px solid rgba(0,229,255,0.1);
+      border-radius: 8px;
+    }
+
+    .spec-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--ciano);
+      flex-shrink: 0;
+      box-shadow: 0 0 8px var(--ciano);
+    }
+
+    .spec-text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .palmilha-visual {
+      background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(94,46,255,0.05));
+      border: 1px solid rgba(0,229,255,0.12);
+      border-radius: 20px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .palmilha-visual-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ciano);
+      margin-bottom: 1.5rem;
+    }
+
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .layer {
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .layer-1 { background: rgba(0,229,255,0.15); border: 1px solid rgba(0,229,255,0.3); color: var(--ciano); }
+    .layer-2 { background: rgba(94,46,255,0.15); border: 1px solid rgba(94,46,255,0.3); color: #a78bfa; }
+    .layer-3 { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    .layer-label { font-size: 0.7rem; font-weight: 400; opacity: 0.6; margin-top: 2px; display: block; }
+
+    /* ── MEIAS ── */
+    #meias { text-align: center; }
+
+    .meias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .meia-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,229,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .meia-card:hover {
+      border-color: rgba(0,229,255,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,229,255,0.1);
+    }
+
+    .meia-card.featured {
+      border-color: rgba(0,229,255,0.3);
+    }
+
+    .meia-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--ciano);
+      color: var(--preto);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    .meia-visual {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+
+    .meia-card:nth-child(1) .meia-visual { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(0,229,255,0.02)); }
+    .meia-card:nth-child(2) .meia-visual { background: linear-gradient(135deg, rgba(94,46,255,0.1), rgba(0,229,255,0.06)); }
+    .meia-card:nth-child(3) .meia-visual { background: linear-gradient(135deg, rgba(94,46,255,0.06), rgba(94,46,255,0.02)); }
+
+    .meia-height-bar {
+      position: absolute;
+      left: 1.5rem;
+      bottom: 0;
+      width: 6px;
+      border-radius: 6px 6px 0 0;
+      background: var(--ciano);
+    }
+
+    .meia-card:nth-child(1) .meia-height-bar { height: 35%; opacity: 0.6; }
+    .meia-card:nth-child(2) .meia-height-bar { height: 60%; opacity: 0.8; }
+    .meia-card:nth-child(3) .meia-height-bar { height: 90%; opacity: 1; }
+
+    .meia-body { padding: 1.5rem 1.5rem 2rem; }
+
+    .meia-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ciano);
+      margin-bottom: 0.4rem;
+    }
+
+    .meia-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .meia-desc {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .meia-attrs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meia-attr {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .meia-attr::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--ciano);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .meia-price-avulso {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: line-through;
+      margin-bottom: 0.2rem;
+    }
+
+    .meia-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ciano);
+    }
+
+    .meia-price-sub {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.2rem;
+    }
+
+    .meia-btn {
+      display: block;
+      margin-top: 1.2rem;
+      background: transparent;
+      border: 1px solid rgba(0,229,255,0.3);
+      color: var(--ciano);
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .meia-btn:hover, .meia-card.featured .meia-btn {
+      background: var(--ciano);
+      color: var(--preto);
+    }
+
+    /* ── COMPARATIVO ── */
+    #comparativo { background: var(--grafite); text-align: center; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 3rem;
+      font-size: 0.88rem;
+    }
+
+    .compare-table th {
+      padding: 1rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .compare-table th:first-child { text-align: left; color: rgba(255,255,255,0.4); }
+    .compare-table th.nexstep { color: var(--ciano); font-family: 'Orbitron', sans-serif; }
+    .compare-table th.comum, .compare-table th.importada { color: rgba(255,255,255,0.5); }
+
+    .compare-table td {
+      padding: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .compare-table td:first-child { text-align: left; color: rgba(255,255,255,0.8); font-weight: 500; }
+    .compare-table td.nexstep { color: var(--ciano); font-weight: 700; }
+    .compare-table tr:hover td { background: rgba(0,229,255,0.02); }
+
+    .check { color: var(--ciano); font-size: 1.1rem; }
+    .cross { color: #ff4757; font-size: 1.1rem; }
+    .partial { color: #ffa502; font-size: 1.1rem; }
+
+    /* ── PREÇOS ── */
+    #precos { text-align: center; }
+
+    .precos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 3.5rem;
+    }
+
+    .preco-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,229,255,0.08);
+      border-radius: 14px;
+      padding: 2rem 1.5rem;
+      text-align: left;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .preco-card.destaque {
+      border-color: var(--ciano);
+      background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(94,46,255,0.04));
+    }
+
+    .preco-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,229,255,0.08);
+    }
+
+    .preco-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ciano);
+      color: var(--preto);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .preco-nome {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .preco-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .preco-valor {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--ciano);
+      margin-bottom: 0.3rem;
+    }
+
+    .preco-parcelado {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    .preco-itens {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .preco-itens li {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .preco-itens li::before { content: '✓'; color: var(--ciano); font-weight: 700; }
+
+    .preco-btn {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1px solid rgba(0,229,255,0.3);
+      background: transparent;
+      color: var(--ciano);
+    }
+
+    .preco-card.destaque .preco-btn {
+      background: var(--ciano);
+      color: var(--preto);
+      border-color: var(--ciano);
+    }
+
+    .preco-btn:hover {
+      background: var(--ciano);
+      color: var(--preto);
+    }
+
+    /* ── DEPOIMENTOS ── */
+    #depoimentos { background: var(--grafite); text-align: center; }
+
+    .depo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .depo-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,229,255,0.07);
+      border-radius: 14px;
+      padding: 1.8rem;
+      text-align: left;
+      transition: all 0.3s;
+    }
+
+    .depo-card:hover {
+      border-color: rgba(0,229,255,0.2);
+      transform: translateY(-3px);
+    }
+
+    .depo-stars {
+      color: var(--ciano);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .depo-texto {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .depo-autor {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .depo-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--ciano), var(--roxo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--preto);
+      flex-shrink: 0;
+    }
+
+    .depo-nome { font-weight: 700; font-size: 0.88rem; }
+    .depo-cargo { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    /* ── GARANTIA ── */
+    #garantia {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(94,46,255,0.04));
+      border-top: 1px solid rgba(0,229,255,0.08);
+      border-bottom: 1px solid rgba(0,229,255,0.08);
+    }
+
+    .garantia-box {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .garantia-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .garantia-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--ciano);
+    }
+
+    .garantia-texto {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── FAQ ── */
+    #faq { text-align: center; }
+
+    .faq-list {
+      max-width: 700px;
+      margin: 3rem auto 0;
+      text-align: left;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--branco);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 1.2rem 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: color 0.3s;
+    }
+
+    .faq-question:hover { color: var(--ciano); }
+
+    .faq-arrow {
+      font-size: 0.75rem;
+      color: var(--ciano);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 1.2rem; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    /* ── CTA FINAL ── */
+    #cta-final {
+      text-align: center;
+      padding: 8rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,229,255,0.06) 0%, transparent 70%);
+    }
+
+    .cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+
+    .cta-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .cta-title span { color: var(--ciano); }
+
+    .cta-subtitle {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--grafite);
+      border-top: 1px solid rgba(0,229,255,0.08);
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-brand-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--ciano);
+      letter-spacing: 3px;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+      max-width: 250px;
+    }
+
+    .footer-col-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ciano);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--ciano); }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .precos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #problema .container, #palmilha .container { grid-template-columns: 1fr; }
+      .features-grid, .meias-grid, .depo-grid { grid-template-columns: 1fr; }
+      .precos-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#hero" class="nav-logo">NEXSTEP</a>
+  <ul class="nav-links">
+    <li><a href="#solucao">Tecnologia</a></li>
+    <li><a href="#meias">Meias</a></li>
+    <li><a href="#precos">Preços</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#precos" class="nav-cta">Comprar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Tecnologia memory foam</div>
+    <h1 class="hero-title">A tecnologia que<br/>seu <span>passo</span> merece</h1>
+    <p class="hero-subtitle">Meias técnicas com espuma viscoelástica removível. Conforto inteligente que se molda ao seu pé, absorve impacto e transforma cada passo.</p>
+    <div class="hero-buttons">
+      <a href="#precos" class="btn-primary">Comprar agora</a>
+      <a href="#solucao" class="btn-secondary">Ver tecnologia</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-chip"><div class="hero-chip-dot"></div> Memory foam premium</div>
+      <div class="hero-chip"><div class="hero-chip-dot"></div> 3 alturas disponíveis</div>
+      <div class="hero-chip"><div class="hero-chip-dot"></div> Espuma removível</div>
+      <div class="hero-chip"><div class="hero-chip-dot"></div> 30 dias de garantia</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="container">
+    <div>
+      <div class="section-label">O problema</div>
+      <h2 class="section-title">Seus pés merecem mais do que espuma barata</h2>
+      <ul class="problema-list">
+        <li><span class="problema-icon">⚡</span><span>Palmilhas comuns perdem a forma em semanas e deixam de oferecer qualquer suporte real</span></li>
+        <li><span class="problema-icon">🦶</span><span>Pé cansado e dolorido ao final do dia por falta de absorção de impacto</span></li>
+        <li><span class="problema-icon">🌡️</span><span>Meias convencionais acumulam calor, umidade e odor com uso prolongado</span></li>
+        <li><span class="problema-icon">💸</span><span>Produtos importados com essa tecnologia custam caro e demoram para chegar</span></li>
+      </ul>
+    </div>
+    <div class="problema-visual">
+      <div class="problema-stats-grid">
+        <div>
+          <div class="problema-stat">7x</div>
+          <div class="problema-stat-label">mais absorção de impacto que espuma comum</div>
+        </div>
+        <div>
+          <div class="problema-stat">3</div>
+          <div class="problema-stat-label">zonas de suporte: calcanhar, arco e antepé</div>
+        </div>
+        <div>
+          <div class="problema-stat">30</div>
+          <div class="problema-stat-label">dias de garantia de satisfação</div>
+        </div>
+        <div>
+          <div class="problema-stat">100%</div>
+          <div class="problema-stat-label">memória de forma após cada uso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section id="solucao">
+  <div class="container">
+    <div class="section-label">A solução</div>
+    <h2 class="section-title">Tecnologia que você sente a cada passo</h2>
+    <p class="section-subtitle">A NexStep combina meia técnica respirável com espuma viscoelástica de alta densidade, criando um sistema de conforto inteligente.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Memory Foam Premium</div>
+        <div class="feature-desc">Espuma viscoelástica de alta densidade que se molda ao contorno exato do seu pé e retorna lentamente à forma original.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💨</div>
+        <div class="feature-title">Respirabilidade Total</div>
+        <div class="feature-desc">Célula aberta que permite circulação de ar, reduzindo calor e umidade mesmo em uso prolongado.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">Suporte em 3 Zonas</div>
+        <div class="feature-desc">Cobertura completa do calcanhar, arco plantar e antepé para distribuição ideal da pressão.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♻️</div>
+        <div class="feature-title">Espuma Removível</div>
+        <div class="feature-desc">Retire a espuma para lavar a meia separadamente e repor quando necessário. Prático e higiênico.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🦠</div>
+        <div class="feature-title">Tratamento Antiodor</div>
+        <div class="feature-desc">Camada superior da espuma com tratamento antibacteriano para manter o frescor do pé durante todo o dia.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✂️</div>
+        <div class="feature-title">Design Anatômico</div>
+        <div class="feature-desc">Formato ergonômico com bordas chanfradas que eliminam pontos de pressão e marcas no pé.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PALMILHA -->
+<section id="palmilha">
+  <div class="container">
+    <div>
+      <div class="section-label">Espuma NexStep</div>
+      <h2 class="section-title">Engenharia de conforto em 3 camadas</h2>
+      <p class="section-subtitle">Cada espuma NexStep é composta por três camadas projetadas para trabalhar em conjunto e oferecer o máximo de conforto.</p>
+      <div class="palmilha-specs">
+        <div class="spec-item"><div class="spec-dot"></div><div class="spec-text">Densidade: 60 a 90 kg/m³ para suporte ideal</div></div>
+        <div class="spec-item"><div class="spec-dot"></div><div class="spec-text">Espessura: 8 a 12mm dependendo do modelo</div></div>
+        <div class="spec-item"><div class="spec-dot"></div><div class="spec-text">Recuperação lenta e progressiva após compressão</div></div>
+        <div class="spec-item"><div class="spec-dot"></div><div class="spec-text">Deformação permanente inferior a 10%</div></div>
+        <div class="spec-item"><div class="spec-dot"></div><div class="spec-text">Baixo VOC — sem odor químico residual</div></div>
+        <div class="spec-item"><div class="spec-dot"></div><div class="spec-text">Compatível com tênis casual e urbano</div></div>
+      </div>
+    </div>
+    <div class="palmilha-visual">
+      <div class="palmilha-visual-title">Composição da espuma</div>
+      <div class="layer-stack">
+        <div class="layer layer-1">
+          Camada Superior — Tecido Respirável
+          <span class="layer-label">Malha antibacteriana de contato direto com o pé</span>
+        </div>
+        <div class="layer layer-2">
+          Camada Intermediária — Memory Foam
+          <span class="layer-label">Espuma viscoelástica de alta densidade (60–90 kg/m³)</span>
+        </div>
+        <div class="layer layer-3">
+          Camada Base — Estabilizador
+          <span class="layer-label">Base firme com revestimento antiderrapante</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEIAS -->
+<section id="meias">
+  <div class="container">
+    <div class="section-label">NexStep Wear</div>
+    <h2 class="section-title">Escolha a altura ideal para o seu dia</h2>
+    <p class="section-subtitle">Três modelos com compartimento interno para a espuma viscoelástica. Mesma tecnologia, alturas diferentes.</p>
+    <div class="meias-grid">
+
+      <!-- SHORT -->
+      <div class="meia-card">
+        <div class="meia-visual">
+          🧦
+          <div class="meia-height-bar"></div>
+        </div>
+        <div class="meia-body">
+          <div class="meia-tag">NexStep Short</div>
+          <div class="meia-name">Curta</div>
+          <div class="meia-desc">Discreta e leve. Ideal para quem quer tecnologia sem abrir mão da estética casual no dia a dia.</div>
+          <div class="meia-attrs">
+            <div class="meia-attr">Cano curto — sapatilha</div>
+            <div class="meia-attr">Leveza máxima</div>
+            <div class="meia-attr">Bolso interno plantar</div>
+            <div class="meia-attr">Reforço no calcanhar</div>
+          </div>
+          <div class="meia-price-avulso">R$ 89,90 com espuma</div>
+          <div class="meia-price">R$ 59,90</div>
+          <div class="meia-price-sub">meia apenas — espuma vendida separado</div>
+          <a href="#precos" class="meia-btn">Escolher Short</a>
+        </div>
+      </div>
+
+      <!-- MID -->
+      <div class="meia-card featured">
+        <div class="meia-badge">Mais vendida</div>
+        <div class="meia-visual">
+          🧦
+          <div class="meia-height-bar"></div>
+        </div>
+        <div class="meia-body">
+          <div class="meia-tag">NexStep Mid</div>
+          <div class="meia-name">Média</div>
+          <div class="meia-desc">O equilíbrio perfeito entre conforto, cobertura e estilo. O modelo carro-chefe da linha NexStep.</div>
+          <div class="meia-attrs">
+            <div class="meia-attr">Cano médio — tornozelo</div>
+            <div class="meia-attr">Compressão leve no arco</div>
+            <div class="meia-attr">Bolso interno plantar</div>
+            <div class="meia-attr">Suporte no tornozelo</div>
+          </div>
+          <div class="meia-price-avulso">R$ 99,90 com espuma</div>
+          <div class="meia-price">R$ 69,90</div>
+          <div class="meia-price-sub">meia apenas — espuma vendida separado</div>
+          <a href="#precos" class="meia-btn">Escolher Mid</a>
+        </div>
+      </div>
+
+      <!-- LONG -->
+      <div class="meia-card">
+        <div class="meia-visual">
+          🧦
+          <div class="meia-height-bar"></div>
+        </div>
+        <div class="meia-body">
+          <div class="meia-tag">NexStep Long</div>
+          <div class="meia-name">Longa</div>
+          <div class="meia-desc">Visual premium e maior cobertura. Para quem quer o máximo de proteção e presença no look.</div>
+          <div class="meia-attrs">
+            <div class="meia-attr">Cano longo — panturrilha</div>
+            <div class="meia-attr">Maior área de compressão</div>
+            <div class="meia-attr">Bolso interno plantar</div>
+            <div class="meia-attr">Acabamento premium</div>
+          </div>
+          <div class="meia-price-avulso">R$ 109,90 com espuma</div>
+          <div class="meia-price">R$ 79,90</div>
+          <div class="meia-price-sub">meia apenas — espuma vendida separado</div>
+          <a href="#precos" class="meia-btn">Escolher Long</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section id="comparativo">
+  <div class="container">
+    <div class="section-label">Comparativo</div>
+    <h2 class="section-title">Por que NexStep?</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="nexstep">NexStep</th>
+          <th class="comum">Palmilha Comum</th>
+          <th class="importada">Palmilha Importada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Memory foam premium</td>
+          <td class="nexstep check">✓</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Integrado à meia</td>
+          <td class="nexstep check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Espuma removível</td>
+          <td class="nexstep check">✓</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Célula aberta respirável</td>
+          <td class="nexstep check">✓</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Tratamento antiodor</td>
+          <td class="nexstep check">✓</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Disponível no Brasil</td>
+          <td class="nexstep check">✓</td>
+          <td class="check">✓</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Preço acessível</td>
+          <td class="nexstep check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Garantia 30 dias</td>
+          <td class="nexstep check">✓</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section id="precos">
+  <div class="container">
+    <div class="section-label">Preços</div>
+    <h2 class="section-title">Escolha o seu kit</h2>
+    <p class="section-subtitle">Combinações de meia + espuma para todos os perfis.</p>
+    <div class="precos-grid">
+
+      <div class="preco-card">
+        <div class="preco-nome">NexStep Basic</div>
+        <div class="preco-desc">1 par de meia + espuma. Perfeito para experimentar a tecnologia.</div>
+        <div class="preco-valor">R$ 89,90</div>
+        <div class="preco-parcelado">ou 3x de R$ 29,96 sem juros</div>
+        <ul class="preco-itens">
+          <li>1 meia (Short, Mid ou Long)</li>
+          <li>1 espuma viscoelástica</li>
+          <li>Bolsa protetora</li>
+          <li>Garantia 30 dias</li>
+        </ul>
+        <a href="#" class="preco-btn">Comprar Basic</a>
+      </div>
+
+      <div class="preco-card destaque">
+        <div class="preco-badge">Mais popular</div>
+        <div class="preco-nome">NexStep Pro</div>
+        <div class="preco-desc">1 par + espuma + bolsa premium. Melhor custo-benefício da linha.</div>
+        <div class="preco-valor">R$ 119,90</div>
+        <div class="preco-parcelado">ou 4x de R$ 29,97 sem juros</div>
+        <ul class="preco-itens">
+          <li>1 meia (Short, Mid ou Long)</li>
+          <li>1 espuma viscoelástica premium</li>
+          <li>Bolsa de transporte premium</li>
+          <li>1 espuma reserva</li>
+          <li>Garantia 30 dias</li>
+        </ul>
+        <a href="#" class="preco-btn">Comprar Pro</a>
+      </div>
+
+      <div class="preco-card">
+        <div class="preco-nome">NexStep Duo</div>
+        <div class="preco-desc">2 pares com desconto. Ideal para revezar modelos ou presentear.</div>
+        <div class="preco-valor">R$ 149,90</div>
+        <div class="preco-parcelado">ou 5x de R$ 29,98 sem juros</div>
+        <ul class="preco-itens">
+          <li>2 meias (modelos à escolha)</li>
+          <li>2 espumas viscoelásticas</li>
+          <li>Bolsa de transporte</li>
+          <li>Garantia 30 dias</li>
+        </ul>
+        <a href="#" class="preco-btn">Comprar Duo</a>
+      </div>
+
+      <div class="preco-card">
+        <div class="preco-nome">NexStep Family</div>
+        <div class="preco-desc">4 pares completos. Para a família inteira ou revenda com margem.</div>
+        <div class="preco-valor">R$ 219,90</div>
+        <div class="preco-parcelado">ou 6x de R$ 36,65 sem juros</div>
+        <ul class="preco-itens">
+          <li>4 meias (modelos à escolha)</li>
+          <li>4 espumas viscoelásticas</li>
+          <li>Caixa presenteável</li>
+          <li>Bolsa de transporte</li>
+          <li>Garantia 30 dias</li>
+        </ul>
+        <a href="#" class="preco-btn">Comprar Family</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="section-label">Depoimentos</div>
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+    <div class="depo-grid">
+
+      <div class="depo-card">
+        <div class="depo-stars">★★★★★</div>
+        <p class="depo-texto">"Trabalho o dia todo em pé e nunca tive tanto conforto. Depois de uma semana usando a NexStep Mid, simplesmente não consigo mais usar meia normal."</p>
+        <div class="depo-autor">
+          <div class="depo-avatar">C</div>
+          <div>
+            <div class="depo-nome">Carlos M.</div>
+            <div class="depo-cargo">Vendedor — São Paulo, SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depo-card">
+        <div class="depo-stars">★★★★★</div>
+        <p class="depo-texto">"Comprei o kit Duo para mim e para minha esposa. A Long é incrível — parece que o pé flutua dentro do tênis. Produto de qualidade absurda pelo preço."</p>
+        <div class="depo-autor">
+          <div class="depo-avatar">R</div>
+          <div>
+            <div class="depo-nome">Rafael T.</div>
+            <div class="depo-cargo">Professor — Curitiba, PR</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depo-card">
+        <div class="depo-stars">★★★★★</div>
+        <p class="depo-texto">"A espuma removível é um detalhe genial. Lavo a meia sem problema e a espuma dura muito mais do que eu esperava. Já recomendei para todo mundo."</p>
+        <div class="depo-autor">
+          <div class="depo-avatar">A</div>
+          <div>
+            <div class="depo-nome">Ana L.</div>
+            <div class="depo-cargo">Designer — Rio de Janeiro, RJ</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section id="garantia">
+  <div class="container">
+    <div class="garantia-box">
+      <div class="garantia-icon">🛡️</div>
+      <div class="garantia-title">30 dias de garantia total</div>
+      <p class="garantia-texto">Teste a NexStep por 30 dias completos. Se você não sentir a diferença no conforto e no suporte do seu pé, devolvemos 100% do seu dinheiro. Sem burocracia, sem perguntas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">Dúvidas frequentes</div>
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          A espuma pode ser lavada na máquina?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">A espuma NexStep é removível e deve ser lavada à mão com água fria e sabão neutro. Já a meia pode ser lavada normalmente na máquina após a remoção da espuma. Isso aumenta a vida útil de ambos os itens.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Funciona em qualquer tênis?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">Sim. A espuma NexStep tem design anatômico com tolerância para diferentes formatos de pé e calçado. É compatível com a maioria dos tênis casuais e urbanos. Não recomendamos para calçados muito estreitos ou de ponta fina.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Quanto tempo dura a espuma?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">Com uso diário e cuidados adequados, a espuma NexStep tem vida útil estimada de 6 a 12 meses. Após esse período, você pode adquirir espumas de reposição separadamente em nossa loja.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Qual modelo escolher: Short, Mid ou Long?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div
+
